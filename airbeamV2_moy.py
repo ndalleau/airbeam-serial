@@ -24,7 +24,7 @@ debText=deb.strftime('%Y-%m-%d %H:%M:%S')
 
 #Paramètres de la base InfluxDB #######################################################
 #InfluxDB est la base de données qui collecte les résultats des mesures
-bdd='airbeam2in' #Nom de la base InfluxDB
+bdd='airbeam2' #Nom de la base InfluxDB
 if bdd not in variables.bddInflux.keys(): print("Attention: {0} n est pas une base Influx".format(bdd))
 
 client = InfluxDBClient(variables.bddInflux[bdd]['serveur'], variables.bddInflux[bdd]['port'], variables.bddInflux[bdd]['login'],variables.bddInflux[bdd]['mdp'],variables.bddInflux[bdd]['nom'])
@@ -34,7 +34,7 @@ influx = True #Mettre True pour permettre ecriture des données dans la base Inf
 
 #Integration temporelle ##############################################################
 #Gestion du moyennage temporel acquisition sur port serie
-sampleTime= 3  #nbre d'échantillons de données
+sampleTime= 60  #nbre d'échantillons de données
 json_bodySum={
               "fields":{
                         "F":0,
@@ -158,10 +158,10 @@ if __name__ == '__main__':
             i=1
             while i<=sampleTime:
                 f=acquisition() #Acquisition des données sur le port serie
-                if len(f)>=50 and f not in airbeamFunction.msg:
+                if len(f)>=30 and f not in airbeamFunction.msg:
                     print(i)
-                    #d,r=airbeamFunction.transformationData(f) #Pour les nouveaux firmware airbeam
-                    d,r=airbeamFunction.transformationDataOld(f) #Pour les anciens firmware airbeam
+                    d,r=airbeamFunction.transformationData(f) #Pour les nouveaux firmware airbeam
+                    #d,r=airbeamFunction.transformationDataOld(f) #Pour les anciens firmware airbeam
                     json_bodySum=jsonSum(r) #Addition des Json data
                     json_bodySum['tags']=r['tags']
                     json_bodySum['tags']['site']=args.site
