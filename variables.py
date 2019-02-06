@@ -10,10 +10,10 @@ Created on Tue Dec 18 21:41:29 2018
 #InfluxDB est la base de données qui collecte les résultats des mesures
 
 bddInflux={'airbeam2':
-    {'serveur':'serveur2.mobicitair.fr',
+    {'serveur':'XXXXX',
     'port':8086,
-    'login':'capto2018',
-    'mdp':'capto_2018!',
+    'login':'XXXXX',
+    'mdp':'XXXX!',
     'nom':'airbeam2'},
     }
 
