@@ -13,7 +13,7 @@ msg=['System Check','Checking Bluetooth Module.Good','Checking WiFi Module.Good'
 
 #Fonctions de transformation des datas #################################################
 
-def transformationData(data):
+def transformationDataOld(data):
     """Fonction pour la transformation des datas - new firmware"""
     #dataExemple=['Temperature', 'Counts', '8', 'Plantower', 'Counts', '1', 'Airbeam2', 'MAC', '0018961054F1', 'Firmware', 'v11.5.18', '78F', '26C', '299K', '56RH', 'PM1', '3', 'PM2.5', '7', 'PM10', '9']
     data=data.split(sep)
@@ -43,7 +43,7 @@ def transformationData(data):
     print(res)
     return data,res
     
-def transformationDataOld(data):
+def transformationData(data):
     """Fonction pour la transformation des datas - old airbeam"""
     #dataExemple=AirBeam2MAC: 00189610804D 72F 22C 74RH PM-Amb1:25 PM-Amb2.5:42 PM-Amb10:53 PM1:23 PM2.5:31 PM10:56
     data=data.split(sep)
